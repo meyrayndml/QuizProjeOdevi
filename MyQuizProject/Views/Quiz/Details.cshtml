@@ -1,0 +1,29 @@
+﻿@model MyQuizProject.Models.Quiz
+
+@{
+    ViewData["Title"] = "Quiz Details";
+}
+
+<h2>@Model.Name</h2>
+<p><strong>Description:</strong> @Model.Description</p>
+<p><strong>Time Limit:</strong> @Model.TimeLimitSeconds seconds</p>
+
+<h3>Questions:</h3>
+@foreach (var question in Model.Questions)
+{
+    <div class="question">
+        <h4>@question.Text (@question.Points points)</h4>
+        <ul>
+            <li>@question.OptionA</li>
+            <li>@question.OptionB</li>
+            <li>@question.OptionC</li>
+            <li>@question.OptionD</li>
+        </ul>
+        <p><strong>Correct Answer:</strong> @question.CorrectAnswer</p>
+    </div>
+    <hr />
+}
+
+<div>
+    <a asp-action="Index" class="btn btn-primary">Back to Quizzes</a>
+</div>

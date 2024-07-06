@@ -1,0 +1,42 @@
+﻿@model MyQuizProject.Models.Quiz
+
+@{
+    ViewData["Title"] = "Create Quiz";
+}
+
+<h1>Create Quiz</h1>
+
+<h4>Quiz</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeLimitSeconds" class="control-label">Time Limit (seconds)</label>
+                <input asp-for="TimeLimitSeconds" class="form-control" />
+                <span asp-validation-for="TimeLimitSeconds" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a href="@Url.Action("Index", "Category")" class="btn btn-secondary">Panel'e Git</a>
+            </div>
+
+        </form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

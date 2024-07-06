@@ -1,0 +1,46 @@
+﻿@model MyQuizProject.Models.Question
+
+@{
+    ViewData["Title"] = "Question Details";
+}
+
+<h2>Question Details</h2>
+
+<div>
+    <h4>Question Text:</h4>
+    <p>@Model.Text</p>
+</div>
+<div>
+    <h4>Correct Answer:</h4>
+    <p>@Model.CorrectAnswer</p>
+</div>
+<div>
+    <h4>Points:</h4>
+    <p>@Model.Points</p>
+</div>
+
+@if (Model.Quiz != null)
+{
+    <div>
+        <h4>Quiz Name:</h4>
+        <p>@Model.Quiz.Name</p>
+    </div>
+}
+<div>
+    <h4>OptionA:</h4>
+    <p>@Model.OptionA</p>
+</div>
+<div>
+    <h4>OptionB:</h4>
+    <p>@Model.OptionB</p>
+</div>
+<div>
+    <h4>OptionC:</h4>
+    <p>@Model.OptionC</p>
+</div>
+<div>
+    <h4>OptionD:</h4>
+    <p>@Model.OptionD</p>
+</div>
+
+<a asp-action="Index" asp-route-quizId="@Model.QuizId">Back to Questions List</a>

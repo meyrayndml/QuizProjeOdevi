@@ -1,0 +1,43 @@
+﻿@model List<MyQuizProject.Models.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Questions</h2>
+
+<form asp-action="FinishQuiz" method="post">
+    <input type="hidden" name="QuizId" value="@ViewBag.QuizId" />
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var question = Model[i];
+        <div>
+            <h3>@question.Text</h3>
+            <input type="hidden" name="Questions[@i].Id" value="@question.Id" />
+            <input type="hidden" name="Questions[@i].QuizId" value="@ViewBag.QuizId" />
+
+            <div>
+                <input type="radio" id="optionA_@question.Id" name="Questions[@i].SelectedAnswer" value="A" required />
+                <label for="optionA_@question.Id">@question.OptionA</label>
+            </div>
+            <div>
+                <input type="radio" id="optionB_@question.Id" name="Questions[@i].SelectedAnswer" value="B" required />
+                <label for="optionB_@question.Id">@question.OptionB</label>
+            </div>
+            <div>
+                <input type="radio" id="optionC_@question.Id" name="Questions[@i].SelectedAnswer" value="C" required />
+                <label for="optionC_@question.Id">@question.OptionC</label>
+            </div>
+            <div>
+                <input type="radio" id="optionD_@question.Id" name="Questions[@i].SelectedAnswer" value="D" required />
+                <label for="optionD_@question.Id">@question.OptionD</label>
+            </div>
+
+            <hr />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Finish Quiz</button>
+</form>

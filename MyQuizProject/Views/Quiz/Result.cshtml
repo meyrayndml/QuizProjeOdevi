@@ -1,0 +1,27 @@
+﻿@model List<MyQuizProject.Models.QuizResult>
+
+@{
+    ViewBag.Title = "Results for " + ViewBag.QuizName;
+}
+
+<h2>Results for @ViewBag.QuizName</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Score</th>
+            <th>Completed At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td>@result.User.Username</td>
+                <td>@result.Score</td>
+                <td>@result.CompletedAt.ToString("dd/MM/yyyy HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

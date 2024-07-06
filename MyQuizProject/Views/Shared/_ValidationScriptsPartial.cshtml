@@ -1,0 +1,16 @@
+﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@section Scripts {
+    <environment include="Development">
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"
+                integrity="sha384-T4vfY2VZ9H2RTJcz/Ej8Wf5DoSPQAGxIitKxwW8hbGIAj/vEdxws8vhNjaMt6dt9"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"
+                integrity="sha384-IL3xNiBLW+8hi6K4W5d3gU8yFz6JX4G4OgJdja9NUDezKIOvllX/hQBWEsxnl/ft"
+                crossorigin="anonymous"></script>
+    </environment>
+}

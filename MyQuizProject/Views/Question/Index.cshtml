@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MyQuizProject.Models.Question>
+
+<h2>Questions</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Text</th>
+            <th>Correct Answer</th>
+            <th>Points</th>
+            <th>Quiz</th>
+            <th>OptionA</th>
+            <th>OptionB</th>
+            <th>OptionC</th>
+            <th>OptionD</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.Text</td>
+                <td>@question.CorrectAnswer</td>
+                <td>@question.Points</td>
+                <td>@question.Quiz?.Name</td>                
+                <td>@question.OptionA</td>
+                <td>@question.OptionB</td>
+                <td>@question.OptionC</td>
+                <td>@question.OptionD</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@question.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@question.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@question.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Create New Question</a>

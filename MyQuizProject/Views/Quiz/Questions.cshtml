@@ -1,0 +1,71 @@
+﻿@model List<MyQuizProject.Models.Question>
+
+@{
+    ViewBag.Title = "Questions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Questions</h2>
+
+@{
+    // Quiz süresini bulmak için ilk sorunun ait olduğu quiz'i alıyoruz
+    var quiz = Model.FirstOrDefault()?.Quiz;
+    if (quiz != null)
+    {
+        // Quiz süresini JavaScript için değişkene aktarıyoruz
+        var quizTimeLimitSeconds = quiz.TimeLimitSeconds;
+    }
+}
+
+@foreach (var question in Model)
+{
+    <div>
+        <h3>@question.Text</h3>
+
+        <form method="post" asp-action="Start" asp-controller="Quiz">
+            <input type="hidden" name="quizId" value="@ViewBag.QuizId" />
+            <input type="hidden" name="questionId" value="@question.Id" />
+
+            <div>
+                <input type="radio" id="optionA_@question.Id" name="selectedAnswer" value="A" required />
+                <label for="optionA_@question.Id">@question.OptionA</label>
+            </div>
+            <div>
+                <input type="radio" id="optionB_@question.Id" name="selectedAnswer" value="B" required />
+                <label for="optionB_@question.Id">@question.OptionB</label>
+            </div>
+            <div>
+                <input type="radio" id="optionC_@question.Id" name="selectedAnswer" value="C" required />
+                <label for="optionC_@question.Id">@question.OptionC</label>
+            </div>
+            <div>
+                <input type="radio" id="optionD_@question.Id" name="selectedAnswer" value="D" required />
+                <label for="optionD_@question.Id">@question.OptionD</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Next</button>
+        </form>
+    </div>
+}
+
+<script>
+    var timer;
+    var timeLeft = @quiz.TimeLimitSeconds; // Quiz süresini JavaScript tarafına aktarıyoruz
+
+    function startTimer() {
+        timer = setInterval(function () {
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                // Zaman dolduğunda formu otomatik olarak gönder
+                document.forms[0].submit();
+            } else {
+                document.getElementById("timer").innerHTML = timeLeft + " saniye kaldı";
+            }
+            timeLeft -= 1;
+        }, 1000);
+    }
+
+    window.onload = startTimer;
+</script>
+
+<p id="timer">@quiz.TimeLimitSeconds saniye kaldı</p>
